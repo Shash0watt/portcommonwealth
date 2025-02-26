@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimal Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        .garmond {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .inter-unique {
+            font-family: "Inter", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .defhr {
+            display: block;
+            position: relative;
+            padding: 0;
+            margin: 8px auto;
+            height: 0;
+            width: 100%;
+            max-height: 0;
+            font-size: 1px;
+            line-height: 0;
+            clear: both;
+            border: none;
+            border-top: 1px solid #000000;
+            border-bottom: 1px solid #000000;
+        }
+
+        
+        .whitehr {
+            display: block;
+            position: relative;
+            padding: 0;
+            margin: 8px auto;
+            height: 0;
+            width: 100%;
+            max-height: 0;
+            font-size: 1px;
+            line-height: 0;
+            clear: both;
+            border: none;
+            border-top: 1px solid #4a4a4a;
+            border-bottom: 0px solid #ffffff;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <section class="relative h-screen w-screen">
+        <img src="bg.png" alt="Background" class="absolute inset-0 w-full h-full object-cover">
+        <div id="content" class="fade-in absolute top-1 left-5 text-left p-8 rounded-lg">
+            <h1 class="text-9xl font-bold text-slate-900 garmond">Porte <br> <i>Commonwealth</i></h1>
+        </div>
+    </section>
+
+    <section class="h-screen flex items-center justify-center">
+        <div id="scroll-content" class="fade-up text-center p-8 inter-unique max-w-2xl">
+            <h2 class="text-2xl font-[600] text-gray-900 uppercase">Reject Cosset, Build Institution.</h2>
+            <p class="text-md text-gray-700 mt-4">At Porte Commonwealth, our insight is rooted not in convention but
+                in the wisdom of the past, empowering us to shape our world rather than become a product of it.
+                Every day, we harness our resources, perspectives, and relationships to challenge norms, drive
+                lasting impact, and deliver solutions that redefine what’s possible in quantitative finance.
+                <br> <br> <br>
+                Markets are a game of marginal gains. Generating alpha requires looking beyond conventional thinking
+                to identify and capitalize on micro-inefficiencies. Algorithmic trading is the embodiment of that
+                approach, transforming insight into decisive action. It’s how we navigate complexity, seize
+                opportunity, and shape outcomes..
+            </p>
+        </div>
+    </section>
+
+    <section class="h-screen flex items-center justify-center">
+        <div class="container mx-auto flex items-center justify-center">
+            <div class="w-1/2 h-full">
+                <img id="image-content" src="image1.png" alt="Your Image"
+                    class="fade-up w-full h-full object-cover shadow-lg">
+            </div>
+            <div class="w-1/2 flex items-center justify-center">
+                <div id="text-content" class="fade-up p-8 inter-unique max-w-2xl text-center">
+                    <h2 class="text-2xl font-[600] text-gray-900 uppercase">Our Vision</h2>
+                    <p class="text-md text-gray-700 mt-4">
+                        The past decade has reshaped trading in ways that few
+                        anticipated. Discretionary investing, once the foundation of financial markets has steadily
+                        given way to quantitative models that operate with precision and constant adaptability. The edge
+                        no longer belongs to those who rely on intuition but to those who measure probabilities and
+                        capitalize on inefficiencies before they become obvious.
+                        <br><b>They see through the smoke screen.</b>
+                        <br> <br>
+                        The rise of retail trading is a fundamental shift that alters liquidity, volatility, and price
+                        discovery in ways the industry is still struggling to understand. Traditional investing relies
+                        on assumptions that no longer hold. Markets move faster, react quicker, and behave in ways that
+                        demand new approaches. The question is not whether the industry will change, but who will shape
+                        what comes next.
+                        <br>
+
+                        <br>
+                        <hr class="defhr">
+                        <br>
+
+                        <b>At Porte Commonwealth, we have already answered that question.</b>
+                        <br>Our most significant advancement
+                        in the futures industry is a algorithm built to generate reliable alpha in derivative markets
+                        through sector-specific tests. By identifying inefficiencies in fintech and consumer single
+                        stocks, we capitalize on mispriced volatility with
+                        <br>
+                        <b>CATASHORT</b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="h-screen flex items-center justify-center">
+        <div class="container mx-auto flex items-center justify-center">
+            <div class="w-1/2 flex items-center justify-center">
+                <div id="text-content-2" class="fade-up p-8 inter-unique max-w-2xl text-center">
+                    <h2 class="text-2xl font-[600] text-gray-900 uppercase">Future models</h2>
+                    <p class="text-md text-gray-700 mt-4">Porte Commonwealth is focused on developing next-generation
+                        algorithmic structures designed for low correlation and high capital efficiency. We focus on
+                        staying close to and optimizing the key drivers of sustainable alpha:
+
+                        Maximizing expectancy, Sharpe Ratios, and VaR confidence levels
+                        Minimizing drawdowns and mean adverse excursions (MAE)
+
+                        Volatility risk remains a core focus while ensuring resilience against liquidity fragmentation
+                        and volatility shocks. Execution strategies are built to adapt dynamically to market conditions,
+                        maintaining consistency in performance across varying cycles. Future iterations will advance
+                        proprietary signal detection and volatility surface distortions, targeting inefficiencies that
+                        persist despite increasing market efficiency.
+
+                        We do not invent, we constantly refine.
+
+                </div>
+            </div>
+            <div class="w-1/2 flex items-center justify-center">
+                <img id="image-content-2" src="image2.png" alt="Another Image"
+                    class="fade-up w-full h-full object-cover shadow-lg">
+            </div>
+        </div>
+    </section>
+
+    <section class="h-screen flex items-center justify-center inter">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-semibold title-font mb-20">FOUNDERS</h2>
+            <div class="flex justify-center gap-64">
+
+                <div class="text-center">
+                    <img src="metehan.png" alt="Metehan Tandag" class="w-128 h-128 object-cover mx-auto">
+                    <h3 class="text-xl font-semibold mt-4">Metehan Tandag</h3>
+                    <p class="text-red-600 text-sm">Founder, Chairman</p>
+                </div>
+
+                <div class="text-center">
+                    <img src="lucas.png" alt="Lucas J. Gajda" class="w-128 h-128 object-cover mx-auto">
+                    <h3 class="text-xl font-semibold mt-4">Lucas J. Gajda</h3>
+                    <p class="text-red-600 text-sm">Co-Founder, Partner</p>
+                </div>
+
+
+            </div>
+        </div>
+
+    </section>
+
+    <footer class="bg-black text-gray-400 text-sm py-16">
+        <hr class="whitehr">
+
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 mb-20">
+            <p>© Porte Commonwealth 2023</p>
+            <a href="#" class="flex items-center gap-1">
+                CHANGE LANGUAGE <span class="fi fi-gb"></span>
+            </a>
+            <div class="flex gap-4">
+                <a href="#" class="hover:text-white">TERMS & CONDITIONS OF USE</a>
+                <a href="#" class="hover:text-white">PERSONAL DATA & COOKIES</a>
+                <a href="#" class="hover:text-white">US PRIVACY POLICY</a>
+                <a href="#" class="hover:text-white">RIGHTS REQUEST FORM</a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("content").classList.add("visible");
+        });
+
+        document.addEventListener("scroll", function () {
+            let elements = ["scroll-content", "image-content", "text-content", "text-content-2", "image-content-2", "founder", "founder2"];
+            let windowHeight = window.innerHeight;
+
+            elements.forEach(id => {
+                let el = document.getElementById(id);
+                if (el) {
+                    let position = el.getBoundingClientRect().top;
+                    if (position < windowHeight - 50) {
+                        el.classList.add("visible");
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
