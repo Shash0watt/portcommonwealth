@@ -4,303 +4,779 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimal Landing Page</title>
+    <title>Porte Commonwealth - Reject Cosset, Build Institution</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+
     <style>
-        .garmond {
-            font-family: 'Cormorant Garamond', serif;
+        /* --- CSS remains the same as the previous version --- */
+        :root {
+            --bg-primary: #FAF9F6;
+            --bg-secondary: #FFFFFF;
+            --text-primary: #2C2A28;
+            --text-secondary: #5C5855;
+            --text-muted: #8C8885;
+            --border-color: #EAE7DC;
+            --accent-color: #D8C3A5;
+            --placeholder-bg: #EAE7DC;
+            --placeholder-text: #8C8885;
+            /* Define light text colors for use over dark background */
+            --text-light-primary: #F8F9FA;
+            /* Near white */
+            --text-light-secondary: #E9ECEF;
+            /* Lighter gray */
+            --text-light-muted: #CED4DA;
+            /* Muted light gray */
         }
 
-        .inter-unique {
-            font-family: "Inter", sans-serif;
-            font-optical-sizing: auto;
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             font-weight: 400;
+        }
+
+        .font-fancy {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+        }
+
+        .headline-main {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            line-height: 1.1;
+            /* color: var(--text-primary); /* Original color, will be overridden in hero */
+            text-transform: uppercase;
+            cursor: default;
+            /* Keep default cursor */
+        }
+
+        .section-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: 0.02em;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .body-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            max-width: 65ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-on-load {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-500 {
+            animation-delay: 0.5s;
+        }
+
+        .delay-700 {
+            animation-delay: 0.7s;
+        }
+
+        .delay-1000 {
+            animation-delay: 1s;
+        }
+
+        .delay-1200 {
+            animation-delay: 1.2s;
+        }
+
+        .delay-1400 {
+            animation-delay: 1.4s;
+        }
+
+        /* --- Navigation Specific --- */
+        nav.top-nav {
+            transition: all 0.3s ease-in-out;
+            color: var(--text-light-secondary);
+            /* Default text color for nav over hero */
+        }
+
+        nav.top-nav a {
+            transition: color 0.3s ease-in-out;
+            color: inherit;
+            /* Inherit color from nav */
+        }
+
+        nav.top-nav .logo-font {
+            color: var(--text-light-primary);
+            /* Logo slightly brighter */
+        }
+
+        nav.top-nav a:hover {
+            color: var(--text-light-primary);
+            /* Hover color over hero */
+        }
+
+        nav.top-nav.scrolled {
+            background-color: rgba(250, 249, 246, 0.85);
+            /* Scrolled background */
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+            color: var(--text-secondary);
+            /* Scrolled text color (reverts to default) */
+        }
+
+        nav.top-nav.scrolled .logo-font {
+            color: var(--text-primary);
+            /* Scrolled logo color */
+        }
+
+        nav.top-nav.scrolled a:hover {
+            color: var(--text-primary);
+            /* Scrolled hover color */
+        }
+
+        nav.top-nav.scrolled .lang-separator {
+            color: var(--text-muted);
+            /* Adjust separator color when scrolled */
+        }
+
+        nav.top-nav.scrolled .lang-inactive {
+            color: var(--text-muted);
+            /* Adjust inactive language color when scrolled */
+        }
+
+        nav.top-nav.scrolled .lang-inactive:hover {
+            color: var(--text-primary);
+        }
+
+        .logo-font {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .text-detail {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .main-footer {
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+        }
+
+        .main-footer a {
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .main-footer a:hover {
+            color: var(--text-primary);
+        }
+
+        .image-placeholder {
+            background-color: var(--placeholder-bg);
+            border: 1px solid rgba(44, 42, 40, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--placeholder-text);
+            font-size: 0.8rem;
+            text-align: center;
+            aspect-ratio: 16 / 9;
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .image-placeholder.rounded-full {
+            border-radius: 9999px;
+            aspect-ratio: 1 / 1;
+        }
+
+        .image-placeholder.aspect-square {
+            aspect-ratio: 1 / 1;
+        }
+
+        .image-placeholder.aspect-portrait {
+            aspect-ratio: 3 / 4;
+        }
+
+        .stat-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent-color);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        blockquote .attribution {
             font-style: normal;
+            margin-top: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
-        .fade-up {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        /* Hero specific text color adjustments */
+        .hero-headline {
+            color: var(--text-light-primary);
         }
 
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .hero-subtext {
+            color: var(--text-light-secondary);
         }
 
-        .fade-up-slow {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
-        }
-
-        .fade-up-slow.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .defhr {
-            display: block;
-            position: relative;
-            padding: 0;
-            margin: 8px auto;
-            height: 0;
-            width: 100%;
-            max-height: 0;
-            font-size: 1px;
-            line-height: 0;
-            clear: both;
-            border: none;
-            border-top: 1px solid #000000;
-            border-bottom: 1px solid #000000;
-        }
-
-
-        .whitehr {
-            display: block;
-            position: relative;
-            padding: 0;
-            margin: 8px auto;
-            height: 0;
-            width: 100%;
-            max-height: 0;
-            font-size: 1px;
-            line-height: 0;
-            clear: both;
-            border: none;
-            border-top: 1px solid #4a4a4a;
-            border-bottom: 0px solid #ffffff;
+        .hero-scroll-indicator {
+            color: var(--text-light-muted);
         }
     </style>
 </head>
 
-<body class="bg-white">
-    <section class="relative h-screen w-screen">
-        <img src="src/bg.png" alt="Background" class="absolute inset-0 w-full h-full object-cover">
-        <div id="content" class="absolute top-1 left-5 text-left p-8 rounded-lg">
-            
-            <h1 class="text-9xl font-[100] text-slate-900 garmond">Porte <br> <i>Commonwealth</i></h1>
-        </div>
-    </section>
+<body class="antialiased">
 
-    <section class="h-screen flex items-center justify-center">
-        <div id="scroll-content" class="fade-up text-center p-8 inter-unique max-w-2xl">
-            <h2 class="text-2xl font-[600] text-gray-900 uppercase">Reject Cosset, Build Institution.</h2>
-            <p class="text-md text-gray-700 mt-4">At Porte Commonwealth, our insight is rooted not in convention but
-                in the wisdom of the past, empowering us to shape our world rather than become a product of it.
-                Every day, we harness our resources, perspectives, and relationships to challenge norms, drive
-                lasting impact, and deliver solutions that redefine what’s possible in quantitative finance.
-                <br> <br> <br>
-                Markets are a game of marginal gains. Generating alpha requires looking beyond conventional thinking
-                to identify and capitalize on micro-inefficiencies. Algorithmic trading is the embodiment of that
-                approach, transforming insight into decisive action. It’s how we navigate complexity, seize
-                opportunity, and shape outcomes..
-            </p>
-        </div>
-    </section>
+    <!-- Main Content Area -->
+    <div class="relative">
 
-    <section class="h-screen flex items-center justify-center">
-        <div class="container mx-auto flex items-center justify-center">
-            <div class="w-1/2 h-full">
-                <img id="image-content" src="src/image1.png" alt="Your Image"
-                    class="fade-up-slow w-full h-full object-cover shadow-lg">
+        <!-- Top Navigation -->
+        <nav id="top-nav"
+            class="top-nav fixed top-0 left-0 right-0 z-30 p-6 md:p-8 flex justify-between items-center text-xs uppercase tracking-widest">
+            <div class="w-20"></div> <!-- Spacer -->
+            <a href="#" class="logo-font animate-on-load delay-1200">Porte Commonwealth</a>
+            <div class="w-20 text-right text-xs tracking-wider">
+                <!-- Added classes for specific styling when scrolled -->
+                <a href="#"
+                    class="animate-on-load delay-1000 opacity-0 inline-block mr-2 hover:text-[var(--text-light-primary)] lang-active">EN</a>
+                <span class="lang-separator text-[var(--text-light-muted)] animate-on-load delay-1000 opacity-0">
+                </span>
+                <a href="#"
+                    class="animate-on-load delay-1000 opacity-0 inline-block ml-2 text-[var(--text-light-muted)] hover:text-[var(--text-light-primary)] lang-inactive"></a>
             </div>
-            <div class="w-1/2 flex items-center justify-center">
-                <div id="text-content" class="fade-up p-8 inter-unique max-w-2xl text-center">
-                    <h2 class="text-2xl font-[600] text-gray-900 uppercase">Our Vision</h2>
-                    <p class="text-md text-gray-700 mt-4">
-                        The past decade has reshaped trading in ways that few
-                        anticipated. Discretionary investing, once the foundation of financial markets has steadily
-                        given way to quantitative models that operate with precision and constant adaptability. The edge
-                        no longer belongs to those who rely on intuition but to those who measure probabilities and
-                        capitalize on inefficiencies before they become obvious.
-                        <br><b>They see through the smoke screen.</b>
-                        <br> <br>
-                        The rise of retail trading is a fundamental shift that alters liquidity, volatility, and price
-                        discovery in ways the industry is still struggling to understand. Traditional investing relies
-                        on assumptions that no longer hold. Markets move faster, react quicker, and behave in ways that
-                        demand new approaches. The question is not whether the industry will change, but who will shape
-                        what comes next.
-                        <br>
+        </nav>
 
-                        <br>
-                        <hr class="defhr">
-                        <br>
+        <!-- Hero Section -->
+        <section
+            class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden bg-cover bg-center bg-no-repeat"
+            style="background-image: url('src/bg.png');">
+            <!-- Overlay for text legibility -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70 z-10"></div>
 
-                        <b>At Porte Commonwealth, we have already answered that question.</b>
-                        <br>Our most significant advancement
-                        in the futures industry is a algorithm built to generate reliable alpha in derivative markets
-                        through sector-specific tests. By identifying inefficiencies in fintech and consumer single
-                        stocks, we capitalize on mispriced volatility with
-                        <br>
-                        <b>CATASHORT</b>
-                    </p>
-                </div>
+            <!-- Content Container -->
+            <div class="relative z-20 w-full max-w-6xl mx-auto">
+                <!-- Hero Headlines - Added hero-headline class for color -->
+                <h1 class="headline-main scramble-text hero-headline" data-value="REJECT">REJECT</h1>
+                <h1 class="headline-main scramble-text hero-headline" data-value="COSSET,">COSSET,</h1>
+                <h1 class="headline-main scramble-text hero-headline" data-value="BUILD">BUILD</h1>
+                <h1 class="headline-main scramble-text hero-headline" data-value="INSTITUTION.">INSTITUTION.</h1>
+                <!-- Subtitle/Tagline - Added hero-subtext class for color -->
+                <p class="body-text mt-6 animate-on-load delay-500 max-w-xl mx-auto hero-subtext">
+                    Harnessing insight rooted in the wisdom of the past to shape the future of quantitative finance.
+                </p>
             </div>
-        </div>
-    </section>
-
-    <section class="h-screen flex items-center justify-center">
-        <div class="container mx-auto flex items-center justify-center">
-            <div class="w-1/2 flex items-center justify-center">
-                <div id="text-content-2" class="fade-up p-8 inter-unique max-w-2xl text-center">
-                    <h2 class="text-2xl font-[600] text-gray-900 uppercase">Future models</h2>
-                    <p class="text-md text-gray-700 mt-4">Porte Commonwealth is focused on developing next-generation
-                        algorithmic structures designed for low correlation and high capital efficiency. We focus on
-                        staying close to and optimizing the key drivers of sustainable alpha:
-
-                        
-                        <br><br><b>Maximizing expectancy, Sharpe Ratios, and VaR confidence levels</b><br>
-                        <br><b>Minimizing drawdowns and mean adverse excursions (MAE)</b><br><br>
-                        
-
-                        Volatility risk remains a core focus while ensuring resilience against liquidity fragmentation
-                        and volatility shocks. Execution strategies are built to adapt dynamically to market conditions,
-                        maintaining consistency in performance across varying cycles. Future iterations will advance
-                        proprietary signal detection and volatility surface distortions, targeting inefficiencies that
-                        persist despite increasing market efficiency.
-
-                        We do not invent, we constantly refine.
-                </div>
+            <!-- Scroll down indicator - Added hero-scroll-indicator class for color -->
+            <div
+                class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-on-load delay-1400 opacity-0 z-20">
+                <svg class="w-6 h-6 hero-scroll-indicator animate-bounce" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
             </div>
-            <div class="w-1/2 flex items-center justify-center">
-                <img id="image-content-2" src="src/image2.png" alt="Another Image"
-                    class="fade-up-slow w-full h-full object-cover">
+        </section>
+
+        <!-- Intro Section -->
+        <section class="py-16 md:py-24 bg-[var(--bg-secondary)] text-center h-[50vh] flex items-center justify-center">
+            <div class="container mx-auto max-w-3xl">
+                <p class="body-text animate-on-load delay-200">At Porte Commonwealth, our insight is rooted not in
+                    convention but in the wisdom of the past, empowering us to shape our world rather than become a
+                    product of it. Every day, we harness our resources, perspectives, and relationships to challenge
+                    norms, drive lasting impact, and deliver solutions that redefine what’s possible in quantitative
+                    finance.</p>
+                <p class="body-text mt-4 animate-on-load delay-300">Markets are a game of marginal gains. Generating
+                    alpha requires looking beyond conventional thinking to identify and capitalize on
+                    micro-inefficiencies. Algorithmic trading is the embodiment of that approach, transforming insight
+                    into decisive action. It’s how we navigate complexity, seize opportunity, and shape outcomes.</p>
             </div>
-        </div>
-    </section>
-
-    <section class="h-screen flex items-center justify-center">
-        <div id="scroll-content" class="fade-up text-center p-8 inter-unique max-w-2xl">
-            <h2 class="text-2xl font-[600] text-gray-900 uppercase">our philosophy</h2>
-            <p class="text-md text-gray-700 mt-4">Ludwig Wittgenstein's Language Games redefined logic, Altering the
-                Vienna Circle and Philosophy itself, offering the most elegant resolution to the long-standing debate
-                between empiricism and rationalism since Kant.
-            
-                We see algorithmic trading as more than a tool. To us, it is the evolution of language games today. No
-                sector rewrites its own rules more dynamically.
-
-                Algorithmic trading is the most renaissance field in finance.
-
-                Man's nature is to create frameworks that define our world. In econometrics, past results build the
-                models that shape the future. Algorithmic systems do the same; infinitely evolving, organically
-                adapting, always refining.
-
-                At Porte Commonwealth, we refuse to be bound by rigid institutional conservatism. We take a polymathic
-                approach, drawing from history, mathematics, and philosophy. We build better analogies, uncover deeper
-                insights, and serve our clients with a refreshing creativity.
-
-            </p>
-        </div>
-    </section>
-
-    <section class="h-screen flex items-center justify-center my-20">
-        <div class="container mx-auto flex justify-center">
-            <!-- First Column -->
-            <div class="flex flex-col w-1/2 gap-4">
+        </section>
 
 
-                <div class="flex fade-up justify-start items-start">
-                    <img src="src/flowers.png" alt="Image" class="w-3/5 h-full object-cover" />
-                </div>
-
-                <div class="h-2/5 flex flex-col items-center justify-center text-center">
-                    <p class="text-2xl fade-up font-[500] max-w-xl">
-                        <span class="font-[700] text-2xl">"</span>
-                        <br>
-                        PHILOSOPHY IS A BATTLE AGAINST THE BEWITCHMENT OF OUR INTELLIGENCE BY MEANS OF LANGUAGE.
-                        <br>
-                        <span class="font-[700] text-2xl">"</span>
-                        <br>
-                        <span class="text-base font-[400] mt-2 block">LUDWIG WITTGENSTEIN</span>
-                    </p>
-                </div>
-
-
-
-            </div>
-
-            <!-- Second Column -->
-            <div class="w-1/2 fade-up flex justify-center items-center">
-                <img src="src/person.png" alt="Image" class="w-full h-full object-cover " />
-            </div>
-
-        </div>
-    </section>
-
-    <section class="h-[10vh] w-full bg-cover bg-center">
-    </section>
-    <section class="h-[70vh] w-full bg-cover bg-center" style="background-image: url(src/sykline2.png);">
-    </section>
-
-
-
-    <section class="h-screen flex items-center justify-center inter">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-semibold title-font mb-20">FOUNDERS</h2>
-            <div class="flex justify-center gap-64">
-
-                <div class="text-center">
-                    <img src="src/metehan.png" alt="Metehan Tandag" class="w-128 h-128 object-cover mx-auto">
-                    <h3 class="text-xl font-semibold mt-4">Metehan Tandag</h3>
-                    <p class="text-red-600 text-sm">Founder, Chairman</p>
-                </div>
-
-                <div class="text-center">
-                    <img src="src/lucas.png" alt="Lucas J. Gajda" class="w-128 h-128 object-cover mx-auto">
-                    <h3 class="text-xl font-semibold mt-4">Lucas J. Gajda</h3>
-                    <p class="text-red-600 text-sm">Co-Founder, Partner</p>
-                </div>
-
-
-            </div>
-        </div>
-    </section>
-
+        <section class="py-16 md:py-24 bg-[var(--bg-primary)] px-4">
+            <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-10 md:gap-12 lg:gap-16">
     
-    <section class="h-[10vh] w-full bg-cover bg-center">
-    </section>
-    <section class="h-[70vh] w-full bg-cover bg-center" style="background-image: url(src/painting.png);">
-    </section>
-
-
-    <footer class="bg-black text-gray-400 text-sm py-16">
-        <hr class="whitehr">
-
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 mb-20">
-            <p>© Porte Commonwealth 2023</p>
-            <a href="#" class="flex items-center gap-1">
-                CHANGE LANGUAGE <span class="fi fi-gb"></span>
-            </a>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-white">TERMS & CONDITIONS OF USE</a>
-                <a href="#" class="hover:text-white">PERSONAL DATA & COOKIES</a>
-                <a href="#" class="hover:text-white">US PRIVACY POLICY</a>
-                <a href="#" class="hover:text-white">RIGHTS REQUEST FORM</a>
+                <div class="w-full md:w-1/2 lg:w-2/5 flex justify-center md:justify-start">
+                     <div class="image-placeholder animate-on-load delay-200 w-full max-w-md md:max-w-none">
+                        <img src="src/image1.png"
+                             alt="Classical painting depicting a lion hunt"
+                             class="w-full h-auto object-cover rounded shadow-md"> </div>
+                </div>
+    
+                <div class="w-full md:w-1/2 lg:w-3/5 text-center md:text-left mt-8 md:mt-0">
+                    <h2 class="section-headline animate-on-load delay-300">Our Vision</h2>
+                    <p class="body-text mb-6 animate-on-load delay-400 mx-auto md:mx-0">
+                        The past decade has reshaped trading in ways that
+                        few anticipated. Discretionary investing, once the foundation of financial markets has steadily
+                        given way to quantitative models that operate with precision and constant adaptability. The edge no
+                        longer belongs to those who rely on intuition but to those who measure probabilities and capitalize
+                        on inefficiencies before they become obvious.
+                     </p>
+                    <p class="font-fancy text-xl md:text-2xl italic text-[var(--text-primary)] my-8 animate-on-load delay-500">
+                        They see through the smoke screen.
+                    </p>
+                    <p class="body-text mb-6 animate-on-load delay-600 mx-auto md:mx-0">
+                        The rise of retail trading is a fundamental shift
+                        that alters liquidity, volatility, and price discovery in ways the industry is still struggling to
+                        understand. Traditional investing relies on assumptions that no longer hold. Markets move faster,
+                        react quicker, and behave in ways that demand new approaches. The question is not whether the
+                        industry will change, but who will shape what comes next.
+                     </p>
+                    
+                     <p class="font-fancy text-xl md:text-2xl italic text-[var(--text-primary)] my-8 animate-on-load delay-500">
+                        At Porte Commonwealth, we have already answered that question.
+                    </p>
+                </div>
+    
             </div>
-        </div>
-    </footer>
+        </section>
+
+        <!-- CATASHORT Advancement Section -->
+        <section class="py-16 md:py-24 bg-[var(--bg-secondary)] px-4">
+            <div class="container mx-auto max-w-4xl text-center">
+                <span class="text-detail mb-4 block animate-on-load delay-100">Our Advancement: CATASHORT</span>
+                <p class="body-text mb-12 animate-on-load delay-200 max-w-3xl">Our most significant advancement in the
+                    futures industry is an algorithm built to generate reliable alpha in derivative markets through
+                    sector-specific tests. By identifying inefficiencies in fintech and consumer single stocks, we
+                    capitalize on mispriced volatility with CATASHORT.</p>
+                <div id="stats-container" class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    <div class="animate-on-load delay-300">
+                        <div class="stat-value" data-target="3.29">0.00</div>
+                        <div class="stat-label">Sharpe Ratio</div>
+                    </div>
+                    <div class="animate-on-load delay-400">
+                        <div class="stat-value" data-target="-0.03">0.00</div>
+                        <div class="stat-label">ES Correlation</div>
+                    </div>
+                    <div class="animate-on-load delay-500">
+                        <div class="stat-value" data-target="7.21">0.00%</div>
+                        <div class="stat-label">Max Drawdown</div>
+                    </div>
+                    <div class="animate-on-load delay-600">
+                        <div class="stat-value" data-target="10.7">0.0%</div>
+                        <div class="stat-label">ROI (H2)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-24 bg-[var(--bg-primary)] px-4">
+            <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-10 md:gap-12 lg:gap-16">
+
+                <div class="w-full md:w-1/2 lg:w-3/5 text-center md:text-left">
+                    <h2 class="section-headline animate-on-load delay-100">Future Models</h2>
+                    <p class="body-text mb-8 animate-on-load delay-200 mx-auto md:mx-0"> Porte Commonwealth is focused
+                        on developing
+                        next-generation algorithmic structures designed for low correlation and high capital efficiency.
+                        We
+                        focus on staying close to and optimizing the key drivers of sustainable alpha:
+                    </p>
+                    <ul
+                        class="body-text text-left list-disc list-inside space-y-2 mb-8 animate-on-load delay-300 inline-block">
+                        <li>Maximizing expectancy, Sharpe Ratios, and VaR confidence levels</li>
+                        <li>Minimizing drawdowns and mean adverse excursions (MAE)</li>
+                    </ul>
+                    <p class="body-text mb-8 animate-on-load delay-400 mx-auto md:mx-0"> Volatility risk remains a core
+                        focus while ensuring
+                        resilience against liquidity fragmentation and volatility shocks. Execution strategies are built
+                        to
+                        adapt dynamically to market conditions, maintaining consistency in performance across varying
+                        cycles. Future iterations will advance proprietary signal detection and volatility surface
+                        distortions, targeting inefficiencies that persist despite increasing market efficiency.
+                    </p>
+                    <p
+                        class="font-fancy text-xl md:text-2xl italic text-[var(--text-primary)] my-8 animate-on-load delay-500">
+                        We do not invent, we constantly refine.
+                    </p>
+                </div>
+
+                <div class="w-full md:w-1/2 lg:w-2/5 flex justify-center md:justify-center mt-8 md:mt-0">
+                    <div class="image-placeholder animate-on-load delay-400 w-full max-w-md md:max-w-none">
+                        <img src="src/image2.png" alt="Classical painting of women by a fountain"
+                            class="w-full h-auto object-cover rounded shadow-md">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Our Philosophy Section -->
+        <section class="py-16 md:py-24 bg-[var(--bg-secondary)] px-4">
+            <div class="container mx-auto max-w-3xl">
+                <div class="text-center mb-12">
+                    <h2 class="section-headline animate-on-load delay-100">Our Philosophy</h2>
+                    <p class="body-text animate-on-load delay-200">Ludwig Wittgenstein's Language Games redefined logic,
+                        altering the Vienna Circle and Philosophy itself, offering the most elegant resolution to the
+                        long-standing debate between empiricism and rationalism since Kant.</p>
+                    <p class="body-text mt-4 animate-on-load delay-300">We see algorithmic trading as more than a tool.
+                        To us, it is the evolution of language games today. No sector rewrites its own rules more
+                        dynamically.</p>
+                    <p
+                        class="font-fancy text-xl md:text-2xl italic text-[var(--text-primary)] my-8 animate-on-load delay-400 text-center">
+                        Algorithmic trading is the most renaissance field in finance.</p>
+                    <p class="body-text mt-4 animate-on-load delay-300">Man's nature is to create frameworks that
+                        define our world. In econometrics, past results build the models that shape the future.
+                        Algorithmic systems do the same; infinitely evolving, organically adapting, always refining.</p>
+                    <p class="body-text mt-4 animate-on-load delay-300">At Porte Commonwealth, we refuse to be bound by
+                        rigid institutional conservatism. We take a polymathic approach, drawing from history,
+                        mathematics, and philosophy. We build better analogies, uncover deeper insights, and serve
+                        our clients with a refreshing creativity.</p>
+
+                </div>
+            </div>
+        </section>
 
 
+        <!-- ludwing section -->
+        <section class="h-screen flex items-center justify-center my-20 ">
+            <div class="container mx-auto flex justify-center">
+                <!-- First Column -->
+                <div class="flex flex-col w-1/2 gap-4">
 
+
+                    <div class="flex fade-up justify-start items-start">
+                        <img src="src/flowers.png" alt="Image" class="w-3/5 h-full object-cover" />
+                    </div>
+
+                    <div class="h-2/5 flex flex-col justify-center text-center">
+                        <blockquote class="animate-on-load delay-700 mt-4 md:mt-0 mx-auto md:mx-0 max-w-md">
+                            <p class="text-lg md:text-xl font-fancy text-[var(--text-primary)]">“ Philosophy is a battle
+                                against the bewitchment of
+                                our intelligence by means of language. ”</p>
+                            <footer class="attribution">- Ludwig Wittgenstein</footer>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Second Column -->
+                <div class="w-1/2 fade-up flex justify-center items-center">
+                    <img src="src/person.png" alt="Image" class="w-full h-full object-cover " />
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Founders Section -->
+        <section class="py-16 md:py-24 bg-[var(--bg-secondary)] px-4">
+            <div class="container mx-auto max-w-4xl text-center">
+                <h2 class="section-headline animate-on-load delay-100">Founders</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 mt-12">
+
+                    <div class="flex flex-col items-center animate-on-load delay-200">
+                        <div class="image-placeholder rounded-full w-full max-w-[250px] md:max-w-[300px] mb-4">
+                            <img src="src/metehan.png" alt="Portrait of Metehan Tandag"
+                                class="w-56 h-56 md:w-72 md:h-72 object-cover rounded-full mx-auto">
+                        </div>
+                        <h3 class="text-xl font-medium text-[var(--text-primary)] mb-1">Metehan Tandag</h3>
+                        <p class="text-detail">Founder, Chairman</p>
+                    </div>
+
+                    <div class="flex flex-col items-center animate-on-load delay-300">
+                        <div class="image-placeholder rounded-full w-full max-w-[250px] md:max-w-[300px] mb-4">
+                            <img src="src/lucas.png" alt="Portrait of Metehan Tandag"
+                                class="w-56 h-56 md:w-72 md:h-72 object-cover rounded-full mx-auto">
+                        </div>
+                        <h3 class="text-xl font-medium text-[var(--text-primary)] mb-1">Lucas J. Gajda</h3>
+                        <p class="text-detail">Co-Founder, Partner</p>
+                    </div>
+
+                    <div class="flex flex-col items-center animate-on-load delay-300">
+                        <div class="image-placeholder rounded-full w-full max-w-[250px] md:max-w-[300px] mb-4">
+                            <img src="src/shashwat.jpg" alt="Portrait of Shashwat Jaguri"
+                                class="w-56 h-56 md:w-72 md:h-72 object-cover rounded-full mx-auto">
+                        </div>
+                        <h3 class="text-xl font-medium text-[var(--text-primary)] mb-1">Shashwat Jaguri</h3>
+                        <p class="text-detail">Co-Founder, CTO</p>
+                    </div>
+
+                    <div class="flex flex-col items-center animate-on-load delay-300">
+                        <div class="image-placeholder rounded-full w-full max-w-[250px] md:max-w-[300px] mb-4">
+                            <img src="src/andrew.png" alt="Portrait of Andrew Bianchi"
+                                class="w-56 h-56 md:w-72 md:h-72 object-cover rounded-full mx-auto">
+                        </div>
+                        <h3 class="text-xl font-medium text-[var(--text-primary)] mb-1">Andrew Bianchi</h3>
+                        <p class="text-detail">Co-Founder, Partner</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="h-[90vh] w-full bg-cover bg-center" style="background-image: url(src/painting.png);"></section>
+
+        <!-- Footer -->
+        <footer class="main-footer py-8 px-4 text-xs bg-black">
+            <div
+                class="container mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <div class="mb-4 md:mb-0">© Porte Commonwealth 2023</div>
+                <div class="flex space-x-4">
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Rights</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript for Nav Scroll, Number Animation & Auto Scramble Effect with Slowdown -->
     <script>
-        document.addEventListener("scroll", function () {
-            let elements = document.querySelectorAll(".fade-up, .fade-up-slow");
-            let windowHeight = window.innerHeight;
-            elements.forEach(el => {
-                let position = el.getBoundingClientRect().top;
-                if (position < windowHeight - 50) {
-                    el.classList.add("visible");
+        // --- Nav Scroll Effect ---
+        const nav = document.getElementById('top-nav');
+        if (nav) {
+            const heroSection = nav.nextElementSibling; // Assumes hero is the next element
+            const heroHeight = heroSection ? heroSection.offsetHeight : window.innerHeight; // Approx height
+
+            window.addEventListener('scroll', () => {
+                // Add 'scrolled' class when scrolling past ~50px OR when past the hero section height
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
                 }
             });
+            // Initial check in case the page loads scrolled down
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            }
+        }
+
+        // --- Number Counting Animation ---
+        // (This JS remains the same as previous version)
+        const counters = document.querySelectorAll('.stat-value');
+        if (counters.length > 0) {
+            const animationDuration = 1500;
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+
+            const animateCounter = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                const targetString = counter.getAttribute('data-target');
+                const includesPercent = targetString.includes('%');
+                const decimalPlaces = (targetString.split('.')[1] || '').length;
+                let startTime = null;
+
+                const step = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / animationDuration, 1);
+                    let currentValue = target * (1 - Math.pow(1 - progress, 3)); // Ease-out
+
+                    if (decimalPlaces > 0) {
+                        if (target < 0 && target > -1) { currentValue = Math.max(currentValue, target); }
+                        counter.innerText = currentValue.toFixed(decimalPlaces);
+                    } else {
+                        counter.innerText = Math.ceil(currentValue).toFixed(0);
+                    }
+                    if (progress === 1) { counter.innerText = target.toFixed(decimalPlaces); }
+                    if (includesPercent && !counter.innerText.endsWith('%')) { counter.innerText += '%'; }
+                    if (progress < 1) { requestAnimationFrame(step); }
+                };
+                requestAnimationFrame(step);
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                        const counter = entry.target;
+                        animateCounter(counter);
+                        counter.classList.add('animated');
+                        observer.unobserve(counter);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            counters.forEach(counter => observer.observe(counter));
+        }
+
+
+        // --- Hero Text Scramble Effect (Auto Reveal with Slowdown) ---
+        // (This JS remains the same as previous version)
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrambleElements = document.querySelectorAll('.scramble-text');
+            const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ,. ";
+            const scrambleSpeed = 80;        // Initial scramble speed
+            const revealIncrement = 1 / 3;     // Letters to reveal per step (can adjust)
+            const autoRevealDelay = 0;    // Delay before auto-reveal starts
+            const minRevealSpeed = 10;       // Fastest delay between reveal steps (ms)
+            const maxRevealSpeed = 120;      // Slowest delay between reveal steps (ms)
+
+            scrambleElements.forEach(element => {
+                const originalText = element.dataset.value;
+                let scrambleInterval = null;
+
+                const randomText = () => {
+                    return Array.from({ length: originalText.length })
+                        .map(() => letters[Math.floor(Math.random() * letters.length)])
+                        .join('');
+                };
+
+                element.innerText = randomText(); // Initial random text
+                scrambleInterval = setInterval(() => {
+                    if (element.dataset.resolved !== "true") {
+                        element.innerText = randomText();
+                    } else {
+                        clearInterval(scrambleInterval);
+                    }
+                }, scrambleSpeed);
+                element.dataset.scrambleIntervalId = scrambleInterval;
+
+                // --- Reveal Triggered by Timeout ---
+                setTimeout(() => {
+                    if (element.dataset.resolved === "true") return;
+
+                    const initialIntervalId = parseInt(element.dataset.scrambleIntervalId);
+                    if (!isNaN(initialIntervalId)) {
+                        clearInterval(initialIntervalId);
+                    }
+
+                    let iteration = 0;
+
+                    // --- Recursive Reveal Function ---
+                    function revealStep() {
+                        // Update text based on current iteration
+                        element.innerText = originalText
+                            .split("")
+                            .map((letter, index) => {
+                                if (index < iteration) return originalText[index];
+                                return letters[Math.floor(Math.random() * letters.length)];
+                            })
+                            .join("");
+
+                        iteration += revealIncrement; // Increment revealed letters
+
+                        // --- Check if Done or Schedule Next Step ---
+                        if (iteration >= originalText.length) {
+                            element.dataset.resolved = "true";
+                            element.innerText = originalText; // Ensure final text
+                        } else {
+                            // Calculate progress (0 to 1)
+                            const progress = Math.min(iteration / originalText.length, 1);
+                            // Calculate next delay: starts near minRevealSpeed, ends near maxRevealSpeed
+                            const nextDelay = minRevealSpeed + (progress * (maxRevealSpeed - minRevealSpeed));
+
+                            // Schedule the next step with the calculated delay
+                            setTimeout(revealStep, nextDelay);
+                        }
+                    }
+
+                    // Start the first reveal step
+                    revealStep();
+
+                }, autoRevealDelay);
+
+                // Ensure initial random text is set immediately
+                element.innerText = randomText();
+
+            });
         });
+
     </script>
+
 </body>
 
 </html>
