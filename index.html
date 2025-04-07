@@ -76,169 +76,26 @@
             margin-bottom: 1.5rem;
         }
 
-        .body-text {
-            font-size: 1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            max-width: 65ch;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .animate-on-load {
-            animation: fadeInUp 1s ease-out forwards;
+        .fade-up {
             opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         }
 
-        .delay-100 {
-            animation-delay: 0.1s;
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .delay-200 {
-            animation-delay: 0.2s;
+        .fade-up-slow {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
         }
 
-        .delay-300 {
-            animation-delay: 0.3s;
-        }
-
-        .delay-500 {
-            animation-delay: 0.5s;
-        }
-
-        .delay-700 {
-            animation-delay: 0.7s;
-        }
-
-        .delay-1000 {
-            animation-delay: 1s;
-        }
-
-        .delay-1200 {
-            animation-delay: 1.2s;
-        }
-
-        .delay-1400 {
-            animation-delay: 1.4s;
-        }
-
-        /* --- Navigation Specific --- */
-        nav.top-nav {
-            transition: all 0.3s ease-in-out;
-            color: var(--text-light-secondary);
-            /* Default text color for nav over hero */
-        }
-
-        nav.top-nav a {
-            transition: color 0.3s ease-in-out;
-            color: inherit;
-            /* Inherit color from nav */
-        }
-
-        nav.top-nav .logo-font {
-            color: var(--text-light-primary);
-            /* Logo slightly brighter */
-        }
-
-        nav.top-nav a:hover {
-            color: var(--text-light-primary);
-            /* Hover color over hero */
-        }
-
-        nav.top-nav.scrolled {
-            background-color: rgba(250, 249, 246, 0.85);
-            /* Scrolled background */
-            backdrop-filter: blur(8px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
-            color: var(--text-secondary);
-            /* Scrolled text color (reverts to default) */
-        }
-
-        nav.top-nav.scrolled .logo-font {
-            color: var(--text-primary);
-            /* Scrolled logo color */
-        }
-
-        nav.top-nav.scrolled a:hover {
-            color: var(--text-primary);
-            /* Scrolled hover color */
-        }
-
-        nav.top-nav.scrolled .lang-separator {
-            color: var(--text-muted);
-            /* Adjust separator color when scrolled */
-        }
-
-        nav.top-nav.scrolled .lang-inactive {
-            color: var(--text-muted);
-            /* Adjust inactive language color when scrolled */
-        }
-
-        nav.top-nav.scrolled .lang-inactive:hover {
-            color: var(--text-primary);
-        }
-
-        .logo-font {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-        }
-
-        .text-detail {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-weight: 500;
-            color: var(--text-muted);
+        .fade-up-slow.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .main-footer {
@@ -330,55 +187,14 @@
     </style>
 </head>
 
-<body class="antialiased">
-
-    <!-- Main Content Area -->
-    <div class="relative">
-
-        <!-- Top Navigation -->
-        <nav id="top-nav"
-            class="top-nav fixed top-0 left-0 right-0 z-30 p-6 md:p-8 flex justify-between items-center text-xs uppercase tracking-widest">
-            <div class="w-20"></div> <!-- Spacer -->
-            <a href="#" class="logo-font animate-on-load delay-1200">Porte Commonwealth</a>
-            <div class="w-20 text-right text-xs tracking-wider">
-                <!-- Added classes for specific styling when scrolled -->
-                <a href="#"
-                    class="animate-on-load delay-1000 opacity-0 inline-block mr-2 hover:text-[var(--text-light-primary)] lang-active">EN</a>
-                <span class="lang-separator text-[var(--text-light-muted)] animate-on-load delay-1000 opacity-0">
-                </span>
-                <a href="#"
-                    class="animate-on-load delay-1000 opacity-0 inline-block ml-2 text-[var(--text-light-muted)] hover:text-[var(--text-light-primary)] lang-inactive"></a>
-            </div>
-        </nav>
-
-        <!-- Hero Section -->
-        <section
-            class="relative min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden bg-cover bg-center bg-no-repeat"
-            style="background-image: url('src/bg.png');">
-            <!-- Overlay for text legibility -->
-            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70 z-10"></div>
-
-            <!-- Content Container -->
-            <div class="relative z-20 w-full max-w-6xl mx-auto">
-                <!-- Hero Headlines - Added hero-headline class for color -->
-                <h1 class="headline-main scramble-text hero-headline" data-value="REJECT">REJECT</h1>
-                <h1 class="headline-main scramble-text hero-headline" data-value="COSSET,">COSSET,</h1>
-                <h1 class="headline-main scramble-text hero-headline" data-value="BUILD">BUILD</h1>
-                <h1 class="headline-main scramble-text hero-headline" data-value="INSTITUTION.">INSTITUTION.</h1>
-                <!-- Subtitle/Tagline - Added hero-subtext class for color -->
-                <p class="body-text mt-6 animate-on-load delay-500 max-w-xl mx-auto hero-subtext">
-                    Harnessing insight rooted in the wisdom of the past to shape the future of quantitative finance.
-                </p>
-            </div>
-            <!-- Scroll down indicator - Added hero-scroll-indicator class for color -->
-            <div
-                class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-on-load delay-1400 opacity-0 z-20">
-                <svg class="w-6 h-6 hero-scroll-indicator animate-bounce" fill="none" stroke-linecap="round"
-                    stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
-            </div>
-        </section>
+<body class="bg-white">
+    <section class="relative h-screen w-screen">
+        <img src="src/bg.png" alt="Background" class="absolute inset-0 w-full h-full object-cover">
+        <div id="content" class="absolute top-1 left-5 text-left p-8 rounded-lg">
+            
+            <h1 class="text-9xl font-[100] text-slate-900 garmond">Porte <br> <i>Commonwealth</i></h1>
+        </div>
+    </section>
 
         <!-- Intro Section -->
         <section class="py-16 md:py-24 bg-[var(--bg-secondary)] text-center h-[50vh] flex items-center justify-center">
@@ -395,73 +211,46 @@
             </div>
         </section>
 
-
-        <section class="py-16 md:py-24 bg-[var(--bg-primary)] px-4">
-            <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-10 md:gap-12 lg:gap-16">
-    
-                <div class="w-full md:w-1/2 lg:w-2/5 flex justify-center md:justify-start">
-                     <div class="image-placeholder animate-on-load delay-200 w-full max-w-md md:max-w-none">
-                        <img src="src/image1.png"
-                             alt="Classical painting depicting a lion hunt"
-                             class="w-full h-auto object-cover rounded shadow-md"> </div>
-                </div>
-    
-                <div class="w-full md:w-1/2 lg:w-3/5 text-center md:text-left mt-8 md:mt-0">
-                    <h2 class="section-headline animate-on-load delay-300">Our Vision</h2>
-                    <p class="body-text mb-6 animate-on-load delay-400 mx-auto md:mx-0">
-                        The past decade has reshaped trading in ways that
-                        few anticipated. Discretionary investing, once the foundation of financial markets has steadily
-                        given way to quantitative models that operate with precision and constant adaptability. The edge no
-                        longer belongs to those who rely on intuition but to those who measure probabilities and capitalize
-                        on inefficiencies before they become obvious.
-                     </p>
-                    <p class="font-fancy text-xl md:text-2xl italic text-[var(--text-primary)] my-8 animate-on-load delay-500">
-                        They see through the smoke screen.
-                    </p>
-                    <p class="body-text mb-6 animate-on-load delay-600 mx-auto md:mx-0">
-                        The rise of retail trading is a fundamental shift
-                        that alters liquidity, volatility, and price discovery in ways the industry is still struggling to
-                        understand. Traditional investing relies on assumptions that no longer hold. Markets move faster,
-                        react quicker, and behave in ways that demand new approaches. The question is not whether the
-                        industry will change, but who will shape what comes next.
-                     </p>
-                    
-                     <p class="font-fancy text-xl md:text-2xl italic text-[var(--text-primary)] my-8 animate-on-load delay-500">
-                        At Porte Commonwealth, we have already answered that question.
-                    </p>
-                </div>
-    
+    <section class="h-screen flex items-center justify-center">
+        <div class="container mx-auto flex items-center justify-center">
+            <div class="w-1/2 h-full">
+                <img id="image-content" src="src/image1.png" alt="Your Image"
+                    class="fade-up-slow w-full h-full object-cover shadow-lg">
             </div>
-        </section>
+            <div class="w-1/2 flex items-center justify-center">
+                <div id="text-content" class="fade-up p-8 inter-unique max-w-2xl text-center">
+                    <h2 class="text-2xl font-[600] text-gray-900 uppercase">Our Vision</h2>
+                    <p class="text-md text-gray-700 mt-4">
+                        The past decade has reshaped trading in ways that few
+                        anticipated. Discretionary investing, once the foundation of financial markets has steadily
+                        given way to quantitative models that operate with precision and constant adaptability. The edge
+                        no longer belongs to those who rely on intuition but to those who measure probabilities and
+                        capitalize on inefficiencies before they become obvious.
+                        <br><b>They see through the smoke screen.</b>
+                        <br> <br>
+                        The rise of retail trading is a fundamental shift that alters liquidity, volatility, and price
+                        discovery in ways the industry is still struggling to understand. Traditional investing relies
+                        on assumptions that no longer hold. Markets move faster, react quicker, and behave in ways that
+                        demand new approaches. The question is not whether the industry will change, but who will shape
+                        what comes next.
+                        <br>
 
-        <!-- CATASHORT Advancement Section -->
-        <section class="py-16 md:py-24 bg-[var(--bg-secondary)] px-4">
-            <div class="container mx-auto max-w-4xl text-center">
-                <span class="text-detail mb-4 block animate-on-load delay-100">Our Advancement: CATASHORT</span>
-                <p class="body-text mb-12 animate-on-load delay-200 max-w-3xl">Our most significant advancement in the
-                    futures industry is an algorithm built to generate reliable alpha in derivative markets through
-                    sector-specific tests. By identifying inefficiencies in fintech and consumer single stocks, we
-                    capitalize on mispriced volatility with CATASHORT.</p>
-                <div id="stats-container" class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-                    <div class="animate-on-load delay-300">
-                        <div class="stat-value" data-target="3.29">0.00</div>
-                        <div class="stat-label">Sharpe Ratio</div>
-                    </div>
-                    <div class="animate-on-load delay-400">
-                        <div class="stat-value" data-target="-0.03">0.00</div>
-                        <div class="stat-label">ES Correlation</div>
-                    </div>
-                    <div class="animate-on-load delay-500">
-                        <div class="stat-value" data-target="7.21">0.00%</div>
-                        <div class="stat-label">Max Drawdown</div>
-                    </div>
-                    <div class="animate-on-load delay-600">
-                        <div class="stat-value" data-target="10.7">0.0%</div>
-                        <div class="stat-label">ROI (H2)</div>
-                    </div>
+                        <br>
+                        <hr class="defhr">
+                        <br>
+
+                        <b>At Porte Commonwealth, we have already answered that question.</b>
+                        <br>Our most significant advancement
+                        in the futures industry is a algorithm built to generate reliable alpha in derivative markets
+                        through sector-specific tests. By identifying inefficiencies in fintech and consumer single
+                        stocks, we capitalize on mispriced volatility with
+                        <br>
+                        <b>CATASHORT</b>
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
         <section class="py-16 md:py-24 bg-[var(--bg-primary)] px-4">
             <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center gap-10 md:gap-12 lg:gap-16">
@@ -537,9 +326,9 @@
                 <div class="flex flex-col w-1/2 gap-4">
 
 
-                    <div class="flex fade-up justify-start items-start">
-                        <img src="src/flowers.png" alt="Image" class="w-3/5 h-full object-cover" />
-                    </div>
+                <div class="flex fade-up justify-start items-start">
+                    <img src="src/flowers.png" alt="Image" class="w-3/5 h-full object-cover" />
+                </div>
 
                     <div class="h-2/5 flex flex-col justify-center text-center">
                         <blockquote class="animate-on-load delay-700 mt-4 md:mt-0 mx-auto md:mx-0 max-w-md">
@@ -551,10 +340,10 @@
                     </div>
                 </div>
 
-                <!-- Second Column -->
-                <div class="w-1/2 fade-up flex justify-center items-center">
-                    <img src="src/person.png" alt="Image" class="w-full h-full object-cover " />
-                </div>
+            <!-- Second Column -->
+            <div class="w-1/2 fade-up flex justify-center items-center">
+                <img src="src/person.png" alt="Image" class="w-full h-full object-cover " />
+            </div>
 
             </div>
         </section>
